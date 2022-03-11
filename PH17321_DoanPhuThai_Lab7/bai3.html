@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hàng hoá</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<div class="container" ng-app="myApp">
+    <div class="card" ng-controller="myCtrol">
+        <div class="card-header">DANH SÁCH HÀNG HOÁ</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="fw-bold">
+                        <td>SẢN PHẨM</td>
+                        <td>ĐƠN GIÁ</td>
+                        <td>GIÁ GIẢM</td>
+                        <td>NGÀY</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in list_product|orderBy: '-price' |limitTo:8:16">
+                        <td>{{p.name| uppercase}}</td>
+                        <td>{{p.price| currency}}</td>
+                        <td>{{p.discount| percentage:2}}</td>
+                        <td>{{p.date| date:"dd-MM-yyyy"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<body>
+    <!--script-->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Prods.js"></script>
+    <script>
+        const app = angular.module("myApp", []);
+        app.controller("myCtrol", function($scope) {
+            $scope.list_product = list;
+        })
+        app.filter('percentage', function($filter) {
+            return function(input, decimals) {
+                return $filter('number')(input * 100, decimals) + "%";
+            }
+        })
+    </script>
+</body>
+
+</html>

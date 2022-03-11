@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        .
+        <div class="card">
+            <div class="card-header">
+                <h3>Kết quả kiểm tra môn {{maMon}}</h3>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr class="fw-bold">
+                            <td class="col-md-1">#</td>
+                            <td class="col-md-6">Câu hỏi</td>
+                            <td class="col-md-3">Đáp án bạn chọn</td>
+                            <td class="col-md-1">Đánh giá</td>
+                            <td class="col-md-1">Điểm cộng</td>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr ng-repeat="rs in danhsach_ketqua">
+                            <td>{{$index+1}}</td>
+                            <td>{{rs.CauHoi}}</td>
+                            <td>{{rs.TraLoi}}</td>
+                            <td>
+                                <span class="text-success" ng-show="{{rs.DanhGia}}">Đúng</span>
+                                <span class="text-danger" ng-hide="{{rs.DanhGia}}">Sai</span>
+                            </td>
+                            <td>
+                                <span class="text-success" ng-show="{{rs.DanhGia}}">+1đ</span>
+                                <span class="text-danger" ng-hide="{{rs.DanhGia}}">+0đ</span>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="card-footer">
+                <h5>Tổng điểm: {{diem}} điểm</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2"></div>

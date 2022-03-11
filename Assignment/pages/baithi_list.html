@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        <div class="row">
+            <div class="col-xl-4 mb-3" ng-repeat="mt in monThis">
+                <div class="card">
+                    <img src="images/{{mt.image}}" class="card-img-top" width="250px" height="250px" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">{{mt.maMon}} - {{mt.tenMon}}</h3>
+                        <h6 class="card-subtitle mb-3 text-muted">Bài thực hành môn {{mt.maMon}} - {{mt.tenMon}}</h6>
+                        <p class="card-text"><b>Số câu hỏi:</b> 10 câu
+                            <br><b>Thời gian thi:</b> 15 phút
+                            <br><b>Thời hạn:</b><span class="text-danger"> hết 23:59 ngày 25/02/2022</span></p>
+                        <a href="#thi/{{mt.maMon}}" ng-show="checkExam(mt.maMon)=='s' && isLogin!='admin'"><button class="btn btn-primary"><b>START </b> &ensp;<i class="fas fa-forward"></i></button></a>
+                        <a href="#ketquathi/{{mt.maMon}}" ng-show="checkExam(mt.maMon)=='x'  && isLogin!='admin'"> <button class="btn btn-success"><b>Xem kết quả </b> &ensp;<i class="fas fa-forward"></i></button></a>
+                        <div class="dropdown" ng-show="isLogin=='admin'">
+                            <a class="btn btn-warning dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                              Thiết lập <i class="fas fa-cogs"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" ng-click="xoaBai(mt.maMon)">Xoá bài thi</a></li>
+                                <li><a class="dropdown-item" href="#lichsu_baithi/{{mt.maMon}}">Lịch sử bài thi</a></li>
+                                <li><a class="dropdown-item" href="#cauhoi/{{mt.maMon}}">Quản trị câu hỏi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Cảnh báo xoá bài thi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có chắc muốn xoá bài thi này?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                <button type="button" class="btn btn-danger" ng-click="onXoaBai()" data-bs-dismiss="modal">Xoá bài thi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-2"></div>
+</div>

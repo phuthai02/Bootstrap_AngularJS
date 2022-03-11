@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        .
+        <div class="card">
+            <div class="card-header">
+                <h3>Lịch sử điểm thi</h3>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr class="fw-bold">
+                            <td class="col-md-1">#</td>
+                            <td class="col-md-6">Môn thi</td>
+                            <td class="col-md-3">Thời gian thi</td>
+                            <td class="col-md-1">Điểm</td>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr ng-repeat="d in danhsach_LSD">
+                            <td>{{$index+1}}</td>
+                            <td>{{d.tenMon}}</td>
+                            <td>{{d.thoiGian | date:'hh:mm a - dd/MM/yyyy'}}</td>
+                            <td>{{d.diemThi}}</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-2"></div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body ng-app="lab_4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form ng-controller="my_controller">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Chiều dài</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" ng-model="chieudai" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Chiều rộng</label>
+                                <input type="text" class="form-control" id="exampleInputEmai2" ng-model="chieurong" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail3" class="form-label">Diện tích</label>
+                                <input type="text" class="form-control" id="exampleInputEmail3" ng-model="dientich" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail4" class="form-label">Chu vi</label>
+                                <input type="text" class="form-control" id="exampleInputEmail4" ng-model="chuvi" aria-describedby="emailHelp">
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-click="tinhToan()">Calculate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const app = angular.module("lab_4", []);
+
+        function onClick($scope) {
+            $scope.tinhToan = function() {
+                let chieudai = parseFloat($scope.chieudai);
+                let chieurong = parseFloat($scope.chieurong);
+
+                dientich = chieudai * chieurong;
+                chuvi = (chieudai + chieurong) * 2;
+
+                $scope.dientich = dientich;
+                $scope.chuvi = chuvi
+            }
+
+        }
+
+        app.controller("my_controller", onClick);
+    </script>
+</body>
+
+</html>

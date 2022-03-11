@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body ng-app="app">
+
+    <div class="container">
+        <table class="table table-bordered table-condensed text-center align-middle" ng-controller="table">
+            <thead>
+                <tr>
+                    <th>Hình</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src={{students[0].photo}} width="150px" height="150px" /></td>
+                    <td>{{students[0].fullname}}</td>
+                    <td>{{students[0].birthday}}</td>
+                    <td>{{students [0].gender}}</td>
+                    <td>{{students [0].mark}}</td>
+                </tr>
+                <tr>
+                    <td><img src={{students[1].photo}} width="150px" height="150px" /></td>
+                    <td>{{students[1].fullname}}</td>
+                    <td>{{students[1].birthday}}</td>
+                    <td>{{students [1].gender}}</td>
+                    <td>{{students [1].mark}}</td>
+                </tr>
+                <tr>
+                    <td><img src={{students[2].photo}} width="150px" height="150px" /></td>
+                    <td>{{students[2].fullname}}</td>
+                    <td>{{students[2].birthday}}</td>
+                    <td>{{students [2].gender}}</td>
+                    <td>{{students [2].mark}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const app = angular.module("app", []);
+
+        function show($scope) {
+            let students = [{
+                fullname: "Nguyễn Văn Tèo",
+                birthday: "20-01-1995",
+                gender: "Nam",
+                photo: "images/ga3.jpg",
+                mark: 8.5
+            }, {
+                fullname: "Phạm Thị Nở",
+                birthday: "20-01-1995",
+                gender: "Nam",
+                photo: "images/ga.jpg",
+                mark: 8.5
+            }, {
+                fullname: "Trần Ngọc Quang",
+                birthday: "20-01-1995",
+                gender: "Nam",
+                photo: "images/ga2.jpg",
+                mark: 8.5
+            }, ];
+            $scope.students = students;
+        }
+        app.controller("table", show);
+    </script>
+</body>
+
+</html>

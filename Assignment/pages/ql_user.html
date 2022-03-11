@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <table class="table text-center">
+                    <thead class="table-danger fw-bold fs-5">
+                        <tr>
+                            <td>#</td>
+                            <td>UserName</td>
+                            <td>Họ và tên</td>
+                            <td>Email</td>
+                            <td>Giới tính</td>
+                            <td>Ngày sinh</td>
+                            <td>Học phí</td>
+                            <td>Điểm</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="u in users | filter: {userName: '!admin'} | limitTo: 12 : begin">
+                        <tr>
+                            <td>{{u.id}}</td>
+                            <td>{{u.userName}}</td>
+                            <td>{{u.fullname}}</td>
+                            <td>{{u.email}}</td>
+                            <td>
+                                <span ng-show="{{u.gender}}==true">Nam</span>
+                                <span ng-show="{{u.gender}}==false">Nữ</span>
+                            </td>
+                            <td>{{u.birthday}}</td>
+                            <td>{{u.schoolfee}}</td>
+                            <td>{{u.marks}}</td>
+                            <td><button class="btn btn-warning"><a href="#user/{{u.id}}"><li class="fas fa-edit"></li></a></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button ng-click="getFirst()" class="btn-default btn"><img src="images/Button-First-icon.png" alt=""></button>
+                    <button ng-click="getPrevious()" class="btn-default btn"><img src="images/Button-Previous-icon.png" alt=""></button>
+                    <button ng-click="getNext()" class="btn-default btn"><img src="images/Button-Next-icon.png" alt=""></button>
+                    <button ng-click="getLast()" class="btn-default btn"><img src="images/Button-Last-icon.png" alt=""></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-2 "></div>
+</div>

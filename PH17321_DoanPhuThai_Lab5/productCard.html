@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <div class="col-md-3 mt-3" ng-repeat="p in products">
+                <div class="card text-center border-1 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        {{p.name}}
+                    </div>
+                    <div class="card-body">
+                        <img src="images/{{p.image}}" alt="" height="150px" width="95">
+                    </div>
+                    <div class="card-footer">
+                        {{p.price}}$
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--script-->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const app = angular.module("myApp", []);
+
+        function myFunc($scope) {
+            $scope.products = [{
+                name: "Đồng hồ thụy sỹ",
+                image: "ga.jpg",
+                price: 1200
+            }, {
+                name: "Dell Star X",
+                image: "ga.jpg",
+                price: 700
+            }, {
+                name: "Sony Vaio 2017",
+                image: "ga.jpg",
+                price: 1700
+            }, {
+                name: "Máy ảnh Canon",
+                image: "ga.jpg",
+                price: 300
+            }, {
+                name: "Vòng cưới France",
+                image: "ga.jpg",
+                price: 7000
+            }, {
+                name: "Motorola thế hệ 5",
+                image: "ga.jpg",
+                price: 900
+            }, {
+                name: "Mũ cao bồi Mexico",
+                image: "ga.jpg",
+                price: 100
+            }, {
+                name: "Nước hoa Korea",
+                image: "ga.jpg",
+                price: 600
+            }];
+        }
+        app.controller("myCtrl", myFunc);
+    </script>
+</body>
+
+</html>

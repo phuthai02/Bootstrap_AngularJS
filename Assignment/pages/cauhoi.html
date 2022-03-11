@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Quản trị bộ câu hỏi môn {{maMon}}</h3>
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="answer" class="form-label">Câu hỏi: </label>
+                        <input type="text" ng-model="answer.Text" class="form-control" id="answer">
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="mb-3 col-xl-6">
+                            <label for="answerA" class="form-label">A.</label>
+                            <input type="text" ng-model="answer.Answers[0].Text" class="form-control" id="answerA">
+                        </div>
+                        <div class="mb-3 col-xl-6">
+                            <label for="answerB" class="form-label">B.</label>
+                            <input type="text" ng-model="answer.Answers[1].Text" class="form-control" id="answerB">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="mb-3 col-xl-6">
+                            <label for="answerC" class="form-label">C.</label>
+                            <input type="text" ng-model="answer.Answers[2].Text" class="form-control" id="answerC">
+                        </div>
+                        <div class="mb-3 col-xl-6">
+                            <label for="answerD" class="form-label">D.</label>
+                            <input type="text" ng-model="answer.Answers[3].Text" class="form-control" id="answerD">
+                        </div>
+                    </div>
+                </form>
+                <div class="dropdown-divider"></div>
+                <div>
+                    <button class="btn btn-primary" ng-show="!isEdit" ng-click="onInsert()">Thêm câu hỏi</button>
+                    <button class="btn btn-warning" ng-show="isEdit" ng-click="update()">Chỉnh sửa câu hỏi</button>
+                    <button class="btn btn-danger" ng-show="isEdit" ng-click="delete()">Xoá câu hỏi</button>
+                    <button class="btn btn-success" ng-click="reset()">Làm mới</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{message}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                <button type="button" ng-show="action" class="btn btn-danger" ng-click="onDelete()" data-bs-dismiss="modal">Xoá câu hỏi</button>
+                                <button type="button" ng-hide="action" class="btn btn-warning" ng-click="onUpdate()" data-bs-dismiss="modal">Chỉnh sửa câu hỏi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Thông báo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Thao tác thành công
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <table class="table mt-3">
+                    <thead>
+                        <tr class="fs-5 text-center">
+                            <td class="col-xl">#</td>
+                            <td class="col-xl-6">Câu hỏi</td>
+                            <td class="col-xl-1">A</td>
+                            <td class="col-xl-1">B</td>
+                            <td class="col-xl-1">C</td>
+                            <td class="col-xl-1">D</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="a in list_answer | limitTo:12:begin">
+                            <td>{{$index+1}}</td>
+                            <td>{{a.Text}}</td>
+                            <td>{{a.Answers[0].Text}}</td>
+                            <td>{{a.Answers[1].Text}}</td>
+                            <td>{{a.Answers[2].Text}}</td>
+                            <td>{{a.Answers[3].Text}}</td>
+                            <td><button class="btn btn-warning" ng-click="fillToForm(a.Id)"><i class="fas fa-cogs"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button ng-click="getFirst()" class="btn-default btn"><img src="images/Button-First-icon.png" alt=""></button>
+                    <button ng-click="getPrevious()" class="btn-default btn"><img src="images/Button-Previous-icon.png" alt=""></button>
+                    <button ng-click="getNext()" class="btn-default btn"><img src="images/Button-Next-icon.png" alt=""></button>
+                    <button ng-click="getLast()" class="btn-default btn"><img src="images/Button-Last-icon.png" alt=""></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-2"></div>
+</div>

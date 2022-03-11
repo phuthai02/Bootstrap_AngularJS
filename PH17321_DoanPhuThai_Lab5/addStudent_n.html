@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Add Student</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" ng-app="myApp">
+        <form ng-controller="addCtrol">
+            <div class="form-group">
+                <label for=""><b>Họ và tên<span class="text-danger">*</span></b></label>
+                <input type="text" ng-model="student.name" name="" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for=""><b>Ngày sinh:<span class="text-danger">*</span></b></label>
+                <input type="text" ng-model="student.birthday" name="" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for=""><b>Điểm<span class="text-danger">*</span></b></label>
+                <input type="text" ng-model="student.mark" name="" id="" class="form-control">
+                <small class="text-danger">{{message}}</small>
+            </div>
+            <button class="btn btn-info" ng-click="saveStudent()">Lưu</button>
+            <button class="btn btn-danger">Huỷ</button>
+        </form>
+
+        <table class="table mt-3" ng-controller="showCtrol">
+            <thead>
+                <tr>
+                    <td><b>Họ và tên</b></td>
+                    <td><b>Ngày sinh</b></td>
+                    <td><b>Điểm</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="st in list_student">
+                    <td>{{st.name}}</td>
+                    <td>{{st.birthday}}</td>
+                    <td>{{st.mark}}</td>
+                    <td ng-controller="addCtrol"><a href="#" ng-click="editStudent($index)">edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        function addStudent($scope, $rootScope) {
+            $rootScope.student = {};
+            $scope.saveStudent = function() {
+                let markMode = parseFloat($rootScope.student.mark);
+                if (markMode > 10 || markMode < 0) {
+                    $scope.message = "Điểm không hợp lệ! Vui lòng nhập điểm trong khoảng 0 ->10";
+                } else {
+                    $rootScope.list_student.push(angular.copy($rootScope.student));
+                    $rootScope.student = {};
+                }
+            };
+
+            $scope.editStudent = function(index) {
+                $rootScope.index = index;
+                $rootScope.student = angular.copy($rootScope.list_student[index]);
+            };
+
+        }
+
+        function dataStudent($scope, $rootScope) {
+            $rootScope.list_student = [{
+                name: "ThaiDP",
+                birthday: "11/05/2002",
+                mark: 10
+            }, {
+                name: "LucTT",
+                birthday: "11/05/2002",
+                mark: 10
+            }, {
+                name: "QuangNP",
+                birthday: "11/05/2002",
+                mark: 10
+            }];
+        }
+
+        app.controller("addCtrol", addStudent);
+        app.controller("showCtrol", dataStudent);
+    </script>
+</body>
+
+</html>

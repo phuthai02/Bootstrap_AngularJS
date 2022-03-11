@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Lương thưởng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" ng-app="myApp">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6" ng-controller="myCtrol">
+                <div class="card">
+                    <div class="card-header">TÍNH THƯỞNG TẾT NGUYÊN ĐÁN</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">Họ và tên</div>
+                            <div class="col-9"><input type="text" ng-model="hoTen" class="w-100"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3">Lương</div>
+                            <div class="col-9"><input type="text" ng-model="tienLuong" class="w-100"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3">Giới tính</div>
+                            <div class="col-9">
+                                <input type="radio" name="gioiTinh" value="0" ng-model="gioTinh" ng-checked="gioTinh == 0"> Nam
+                                <input type="radio" name="gioiTinh" value="1" ng-model="gioTinh" ng-checked="gioTinh == 1"> Nữ
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3">Độ tuổi</div>
+                            <div class="col-9"><select name="" ng-model="doTuoi" id="" ng-options="x.doTuoi for x in list_doTuoi"></select></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div ng-show="doTuoi.mucThuong > 0 && ">Tiền thưởng:<b>{{tinhThuong() | number:2}}</b> VND</div>
+                        <div ng-hide="doTuoi.mucThuong > 0">Chưa có thông tin</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 "></div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
+    <script src="js/angularjs.min.js "></script>
+    <script>
+        const app = angular.module("myApp", []);
+        app.controller("myCtrol", function($scope) {
+            $scope.gioTinh = 0;
+            $scope.list_doTuoi = [{
+                doTuoi: "Dưới 25 tuổi ",
+                mucThuong: 0.07
+            }, {
+                doTuoi: "Từ 25 đến 40 tuổi ",
+                mucThuong: 0.1
+            }, {
+                doTuoi: "Trên 40 tuổi ",
+                mucThuong: 0.15
+            }];
+            $scope.tinhThuong = function() {
+                var tienThuong = $scope.tienLuong * $scope.doTuoi.mucThuong;
+                if ($scope.gioTinh == 1) {
+                    tienThuong += 200000;
+                }
+                return tienThuong;
+            }
+        });
+    </script>
+</body>
+
+</html>

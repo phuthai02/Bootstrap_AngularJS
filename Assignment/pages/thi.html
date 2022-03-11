@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        <form>
+            <div class="card" style="min-height: 600px;">
+                <div class="card-header">
+                    <div class="fs-4 fw-bold">Câu {{begin+1}}: {{cauhoi.Text}}</div>
+                </div>
+                <div class="card-body">
+                    <!-- <div class="form-check">
+                        <div ng-repeat="a in cauhoi.Answers">
+                            <input class="form-check-input"  ng-model="result" value="{{cauhoi.Answers[$index].Id}}" type="radio" name="{{cauhoi.Id}}" id="{{cauhoi.Answers[$index].Id}}">
+                            <label class="form-check-label" for="{{cauhoi.Answers[$index].Id}}">
+                            {{cauhoi.Answers[$index].Text}}
+                        </label>
+                        </div>
+                    </div> -->
+                    <div class="form-check">
+                        <input class="form-check-input" ng-model="result" value="{{cauhoi.Answers[0].Id}}" type="radio" name="{{cauhoi.Id}}" id="{{cauhoi.Answers[0].Id}}">
+                        <label class="form-check-label" for="{{cauhoi.Answers[0].Id}}">
+                            {{cauhoi.Answers[0].Text}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" ng-model="result" value="{{cauhoi.Answers[1].Id}}" type="radio" name="{{cauhoi.Id}}" id="{{cauhoi.Answers[1].Id}}">
+                        <label class="form-check-label" for="{{cauhoi.Answers[1].Id}}">
+                            {{cauhoi.Answers[1].Text}}
+                        </label>
+                    </div>
+                    <div class="form-check" ng-hide="cauhoi.Answers[2].Text==null">
+                        <input class="form-check-input" ng-model="result" value="{{cauhoi.Answers[2].Id}}" type="radio" name="{{cauhoi.Id}}" id="{{cauhoi.Answers[2].Id}}">
+                        <label class="form-check-label" for="{{cauhoi.Answers[2].Id}}">
+                            {{cauhoi.Answers[2].Text}}
+                        </label>
+                    </div>
+                    <div class="form-check" ng-hide="cauhoi.Answers[3].Text==null">
+                        <input class="form-check-input" ng-model="result" value="{{cauhoi.Answers[3].Id}}" type="radio" name="{{cauhoi.Id}}" id="{{cauhoi.Answers[3].Id}}">
+                        <label class="form-check-label" for="{{cauhoi.Answers[3].Id}}">
+                            {{cauhoi.Answers[3].Text}}
+                        </label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="fs-5 fw-bold col-xl-5 h-100 align-self-center">Thời gian còn lại: 09:30s</div>
+                        <div class="fs-5 fw-bold col-xl-5 align-self-center">
+                            <button ng-click="preAnswer()" class="btn-default btn"><img src="images/Button-Previous-icon.png"  alt=""></button>
+                            <label for="">{{begin+1}}/10</label>
+                            <button ng-click="nextAnswer()" class="btn-default btn"><img src="images/Button-Next-icon.png" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success mt-3" ng-click="nopBai()">Nộp bài</button>
+            <button class="btn btn-danger mt-3" ng-click="dungThi()">Huỷ thi</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{message}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                            <button type="button" class="btn btn-primary" ng-click="onNopBai()" ng-show="action" data-bs-dismiss="modal">Nộp bài</button>
+                            <button type="button" class="btn btn-danger" ng-click="onNopBai()" ng-hide="action" data-bs-dismiss="modal">Dừng thi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xl-2"></div>
+</div>

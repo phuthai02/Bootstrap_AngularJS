@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        .
+        <div class="card">
+            <div class="card-header">
+                <h3>Người dùng: {{user.userName}}</h3>
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 form-group">
+                            <label for="id">ID: </label>
+                            <input type="text" class="form-control" ng-model="user.id" disabled>
+                        </div>
+                        <div class="mb-3 col-lg-6 form-group">
+                            <label for="id">UserName: </label>
+                            <input type="text" ng-model="user.userName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 form-group">
+                            <label for="id">Họ và tên: </label>
+                            <input type="text" ng-model="user.fullname" class="form-control">
+                        </div>
+                        <div class="mb-3 col-lg-6 form-group">
+                            <label for="id">Email: </label>
+                            <input type="text" ng-model="user.email" class=" form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 form-group">
+                            <label for="id">Giới tính: </label>
+                            <br>
+                            <div class="mt-2">
+                                <input type="radio" id="nam" ng-model="user.gender" value="true" name="gender" class="form-check-input">
+                                <label for="nam">Nam</label>
+                                <input type="radio" id="nu" name="gender" value="false" ng-model="user.gender" class="form-check-input ms-2">
+                                <label for="nu">Nữ</label>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 col-lg-6 form-group ">
+                            <label for="id ">Ngày sinh: </label>
+                            <input type="text" ng-model="user.birthday" class=" form-control">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="mb-3 col-lg-6 form-group ">
+                            <label for="id">Học phí: </label>
+                            <input type="text" ng-model="user.schoolfee " class="form-control ">
+                        </div>
+                        <div class="mb-3 col-lg-6 form-group ">
+                            <label for="id">Điểm: </label>
+                            <input type="text" ng-model="user.marks" class=" form-control ">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " ng-click="onHuy()">Huỷ</button>
+                <button class="btn btn-danger " ng-click="onDelete() ">Xoá</button>
+                <button type="button " class="btn btn-primary " ng-click="onSave()">Lưu lại</button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{message}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" ng-click="deLeTe(user.id)" ng-show="action=='x'" data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn btn-warning" ng-click="Save(user.id)" ng-show="action=='s'" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-xl-2"></div>
+</div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="ctrl">
+        <div class="col-md-6">
+            <div class="card mt-3">
+                <h4 class="card-header text-uppercase">
+                    tính thưởng tết nguyên đán
+                </h4>
+                <div class="card-body">
+                    <form name="form_bonus">
+                        <div>
+                            <label for="name" class="fw-bold">Họ và tên</label>
+                            <input type="text" class="form-control" name="txtName" required ng-model="name"
+                                autocomplete="off">
+                            <small ng-show="form_bonus.txtName.$invalid && form_bonus.txtName.$touched"
+                                class="text-danger">Vui lòng nhập họ tên</small>
+                        </div>
+                        <div class="mt-3">
+                            <label for="money" class="fw-bold">Lương</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="luong" ng-model="luong" required
+                                    min="2000000">
+                                <label for="money" class="input-group-text">VNĐ</label>
+                            </div>
+                            <small class="text-danger" ng-show="form_bonus.luong.$error.required && form_bonus.luong.$touched">Vui lòng nhập
+                                giá trị</small>
+                            <small class="text-danger" ng-show="form_bonus.luong.$error.min && form_bonus.luong.$touched">Lương phải lớn hơn
+                                2000000</small>
+                        </div>
+                        <div class="mt-3">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="nam" name="gioiTinh" value="1" class="form-check-input"
+                                    ng-model="gioiTinh" ng-checked="gioiTinh == 1">
+                                <label for="nam" class="form-check-label">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="nu" name="gioiTinh" value="0" class="form-check-input"
+                                    ng-model="gioiTinh" ng-checked="gioiTinh==0">
+                                <label for="nu" class="form-check-label">Nữ</label>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="age" class="fw-bold">Độ tuổi</label>
+                            <select class="form-select" ng-model="doTuoi" name="doTuoi" id="doTuoi"
+                                ng-options="dt.name for dt in doTuoi_List track by dt.tuoi">
+
+                            </select>
+                        </div>
+                        <h4 class="text-success mt-3" ng-show="form_bonus.$valid">Chúc mừng bạn đã nhập đúng</h4>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    TIỀN THƯỞNG: <span class="fw-bold">{{tienThuong()|number : 2}}</span> VNĐ
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--script-->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const app = angular.module("myApp", []);
+        function myFunc($scope) {
+            $scope.doTuoi_List = [
+                { tuoi: "duoi25", name: "Dưới 25 tuổi", rate: 0.07 },
+                { tuoi: "25den40", name: "Từ 25 đến 40 tuổi", rate: 0.1 },
+                { tuoi: "tren40", name: "Trên 40 tuổi", rate: 0.15 }
+            ];
+            $scope.luong = 0;
+            $scope.doTuoi = $scope.doTuoi_List[0];
+            $scope.gioiTinh = "1";
+            $scope.tienThuong = function () {
+                let thuong = $scope.doTuoi.rate * $scope.luong;
+                if ($scope.gioiTinh == 0) {
+                    thuong += 200000;
+                };
+                return thuong;
+            }
+        }
+        app.controller("ctrl", myFunc);
+    </script>
+</body>
+
+</html>

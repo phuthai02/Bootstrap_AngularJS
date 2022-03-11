@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="col-md-5">
+            <div class="card">
+                <p class="card-header text-uppercase fs-4">custom validtion</p>
+                <div class="card-body">
+                    <form name="form_poly">
+                        <label for="so" class="form-label fw-bold">Số poly</label>
+                        <input type="number" class="form-control" ng-model="so" id="so" name="so" autocomplete="off" required poly-number>
+                        <small class="text-danger" ng-show="form_poly.so.$error.required && form_poly.so.$touched">Vui
+                            lòng nhập vào một số</small>
+                        <small class="text-danger" ng-show="form_poly.so.$error.polyNumber && form_poly.so.$touched">Số
+                            poly là số chẵn chia hết cho 9</small>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-secondary">Kiểm tra</button>
+                    <p class="text-success text-uppercase fs-5" ng-show="form_poly.$valid">Đã tìm ra số poly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--script-->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const app = angular.module("myApp", []);
+        app.directive("polyNumber", function() {
+            return {
+                require: "ngModel",
+                link: function(scope, element, attr, mCtrl) {
+                    mCtrl.$parsers.push(function(value) {
+                        if (value % 2 == 0 && value % 9 == 0) {
+                            mCtrl.$setValidity('polyNumber', true);
+                        } else {
+                            mCtrl.$setValidity('polyNumber', false);
+                        }
+                        return value;
+                    });
+                }
+            }
+        });
+        app.controller("myCtrl", function($scope) {
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body ng-app="app">
+    <div class="container">
+        <form ng-controller="mySav">
+            <div class="form-group">
+                <label>Họ và tên</label>
+                <input ng-model="fullname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Giới tính</label>
+                <select ng-model="gender" class="form-control">
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Điểm</label>
+                <input ng-model="mark" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Học lực</label>
+                <input ng-model="grade" class="form-control" disabled/>
+                <hr/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default border-dark" ng-click="save()">Grade</button>
+            </div>
+        </form>
+        <script src="js/angularjs.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            const app = angular.module("app", []);
+
+            function mySave($scope) {
+                $scope.fullname = "Nguyễn Văn Tèo";
+                $scope.gender = "Nam";
+                $scope.save = function() {
+                    let mark = parseFloat($scope.mark);
+                    if (mark < 5) {
+                        $scope.grade = "Rớt";
+                    } else if (mark > 5 && mark <= 10) {
+                        $scope.grade = "Đậu";
+                    }
+
+                }
+            }
+            app.controller("mySav", mySave);
+        </script>
+</body>
+
+</html>

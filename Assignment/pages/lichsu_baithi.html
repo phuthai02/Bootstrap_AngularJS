@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+        .
+        <div class="card">
+            <div class="card-header">
+                <h3>Danh sách sinh viên đã thi môn {{maMon}}</h3>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr class="fw-bold">
+                            <td class="col-md-1">#</td>
+                            <td class="col-md-3">Tên người dùng</td>
+                            <td class="col-md-3">Tên đầy đủ</td>
+                            <td class="col-md-3">Thời gian</td>
+                            <td class="col-md-2">Điểm số</td>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr ng-repeat="bt in list_lsbt">
+                            <td>{{$index+1}}</td>
+                            <td>{{bt.userName}}</td>
+                            <td>{{bt.fullName}}</td>
+                            <td>{{bt.thoiGian | date:'hh:mm a - dd/MM/yyyy'}}</td>
+                            <td>{{bt.diem}}</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="card-footer">
+                <h5>Sỹ số thi: {{syso}} sinh viên</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2"></div>

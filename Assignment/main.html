@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPT Polytechnic</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/profile_card.css">
+</head>
+
+<body>
+    <div class="container-fluid position-relative" ng-app="myApp">
+        <div class="position-fixed start-0 d-none d-xxl-flex mt-5">
+            <div class="mt-3">
+                <img src="images/chuc-tet-den-tram-dieu-nhu-y.png" class="mt-5">
+            </div>
+        </div>
+        <div class="position-fixed end-0 d-none d-xxl-flex mt-5">
+            <div class="mt-3">
+                <img src="images/chuc-tet-den-tram-dieu-nhu-y-phai.png" class="mt-5">
+            </div>
+        </div>
+        <nav class="row" ng-controller="ctrol_dangnhap">
+            <div class="bgnav row mb-3 fixed-top">
+                <div class="small row" ng-show="isLogin ==''">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <nav class="navbar navbar-expand-xxl navbar-light p-0">
+                            <div class="container-fluid p-0">
+                                <button class="navbar-toggler border-0 w-100 align-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSmall" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-chevron-down"></i>
+                           </button>
+                                <div class="collapse navbar-collapse" id="navbarSmall">
+                                    <ul class="navbar-nav me-auto align-items-center nav">
+                                        <li><button class="btn p-0 me-xxl-3"><i class="fab fa-facebook-square"></i> phuthai02</button></li>
+                                        <li> <button class="btn p-0 me-xxl-3"> <i class="fas fa-envelope"></i> doanphuthai</button></li>
+                                        <li> <button class="btn p-0 me-xxl-3"><i class="fas fa-phone-square-alt"></i> 0865110502</button></li>
+                                    </ul>
+                                    <span class="navbar-text">
+                                        <div>
+                                            <ul  class="navbar-nav me-auto align-items-center nav">
+                                                <a href="#dangnhap"><li><button class="btn p-0 ms-xxl-3"  data-bs-toggle="tab" data-bs-target="#login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button></li></a>
+                                                <a href="#dangky"><li> <button class="btn p-0 ms-xxl-3" data-bs-toggle="tab" data-bs-target="#regis"><i class="fas fa-user-plus"></i> Đăng ký</button></li></a>
+                                                <a href="#quenmatkhau"><li> <button class="btn p-0 ms-xxl-3" data-bs-toggle="tab" data-bs-target="#forgot"><i class="fas fa-question-circle"></i> Quên mật khẩu</button></li></a>
+                                            </ul>
+                                          </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="big row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <nav class="navbar navbar-expand-xxl navbar-light row">
+                            <div class="container-fluid">
+                                <button class="navbar-toggler w-100 align-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-lg-0 nav align-items-center fs-5 fw-bold">
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="#/"><i class="fas fa-home"></i> Trang chủ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#gioithieu"><i class="fas fa-info"></i> Giới thiệu</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#lienhe"><i class="fas fa-phone-alt"></i> Liên hệ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#gopy"><i class="fas fa-edit"></i> Góp ý</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#hoidap"><i class="fas fa-question-circle"></i> Hỏi đáp</a>
+                                        </li>
+                                        <li class="nav-item dropdown" ng-show="isLogin=='admin'">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAD" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user-cog"></i> Quản trị
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAD">
+                                                <li><a class="dropdown-item" href="#ql_user">Quản lý người dùng</a></li>
+                                                <li><a class="dropdown-item" href="#baithi">Quản lý bài thi</a></li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="#doimatkhau">Đổi mật khẩu</a></li>
+                                                <li><a class="dropdown-item" href="#dangnhap" ng-click="logout()">Đăng xuất</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown" ng-show="isLogin!='' && isLogin!='admin'">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user"></i> {{isLogin}}
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <li><a class="dropdown-item" href="#hoso">Hồ sơ cá nhân</a></li>
+                                                <li><a class="dropdown-item" href="#">Lịch học</a></li>
+                                                <li><a class="dropdown-item" href="#">Lịch thi</a></li>
+                                                <li><a class="dropdown-item" href="#baithi">Bài thi</a></li>
+                                                <li><a class="dropdown-item" href="#diem">Điểm</a></li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="#doimatkhau">Đổi mật khẩu</a></li>
+                                                <li><a class="dropdown-item" href="#dangnhap" ng-click="logout()">Đăng xuất</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form class="d-flex">
+                                        <input class="form-control rounded-pill" type="search" placeholder="Search in website..." aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+            <div class="bgnav row mb-3">
+                <div class="small row" ng-show="isLogin ==''">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <nav class="navbar navbar-expand-xxl navbar-light p-0">
+                            <div class="container-fluid p-0">
+                                <button class="navbar-toggler border-0 w-100 align-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSmall" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-chevron-down"></i>
+                           </button>
+                                <div class="collapse navbar-collapse" id="navbarSmall">
+                                    <ul class="navbar-nav me-auto align-items-center nav">
+                                        <li><button class="btn p-0 me-xxl-3"><i class="fab fa-facebook-square"></i> phuthai02</button></li>
+                                        <li> <button class="btn p-0 me-xxl-3"> <i class="fas fa-envelope"></i> doanphuthai</button></li>
+                                        <li> <button class="btn p-0 me-xxl-3"><i class="fas fa-phone-square-alt"></i> 0865110502</button></li>
+                                    </ul>
+                                    <span class="navbar-text">
+                                        <div>
+                                            <ul  class="navbar-nav me-auto align-items-center nav">
+                                                <a href="#dangnhap"><li><button class="btn p-0 ms-xxl-3"  data-bs-toggle="tab" data-bs-target="#login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button></li></a>
+                                                <a href="#dangky"><li> <button class="btn p-0 ms-xxl-3" data-bs-toggle="tab" data-bs-target="#regis"><i class="fas fa-user-plus"></i> Đăng ký</button></li></a>
+                                                <a href="#quenmatkhau"><li> <button class="btn p-0 ms-xxl-3" data-bs-toggle="tab" data-bs-target="#forgot"><i class="fas fa-question-circle"></i> Quên mật khẩu</button></li></a>
+                                            </ul>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="big row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <nav class="navbar navbar-expand-xxl navbar-light row">
+                            <div class="container-fluid">
+                                <button class="navbar-toggler w-100 align-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-lg-0 nav align-items-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="#/"><i class="fas fa-home"></i> Trang chủ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#gioithieu"><i class="fas fa-info"></i> Giới thiệu</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#lienhe"><i class="fas fa-phone-alt"></i> Liên hệ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#gopy"><i class="fas fa-edit"></i> Góp ý</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#hoidap"><i class="fas fa-question-circle"></i> Hỏi đáp</a>
+                                        </li>
+                                        <li class="nav-item dropdown" ng-show="isLogin=='admin'">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAD" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user-cog"></i> Quản trị
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAD">
+                                                <li><a class="dropdown-item" href="#ql_user">Quản lý người dùng</a></li>
+                                                <li><a class="dropdown-item" href="#baithi">Quản lý bài thi</a></li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="#doimatkhau">Đổi mật khẩu</a></li>
+                                                <li><a class="dropdown-item" href="#dangnhap" ng-click="logout()">Đăng xuất</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown" ng-show="isLogin!='' && isLogin!='admin'">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user"></i> {{isLogin}}
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <li><a class="dropdown-item" href="#hoso">Hồ sơ cá nhân</a></li>
+                                                <li><a class="dropdown-item" href="#">Lịch học</a></li>
+                                                <li><a class="dropdown-item" href="#">Lịch thi</a></li>
+                                                <li><a class="dropdown-item" href="#baithi">Bài thi</a></li>
+                                                <li><a class="dropdown-item" href="#diem">Điểm</a></li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="#doimatkhau">Đổi mật khẩu</a></li>
+                                                <li><a class="dropdown-item" href="#dangnhap" ng-click="logout()">Đăng xuất</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form class="d-flex">
+                                        <input class="form-control rounded-pill" type="search" placeholder="Search in website..." aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </nav>
+        <article class="row">
+            <div ng-view></div>
+        </article>
+        <footer class="row mt-3" ng-controller="ctrol_footer">
+            <div class="col-xl-2"></div>
+            <div class="col-xl-3 row p-0 ms-2">
+                <img src="images/FPT_Polytechnic.png" class="w-50 mt-3">
+                <h5 class="mt-3">CAO ĐẲNG FPT POLYTECHNIC</h5>
+                <ul class="nav flex-column ">
+                    <li class="nav-item mb-2 "><a href="# " class="nav-link p-0 text-muted ">Điện thoại: (024) 7300 1955</a></li>
+                    <li class="nav-item mb-2 "><a href="# " class="nav-link p-0 text-muted ">Email: caodang@fpt.edu.vn</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xl-3 row p-0  ms-2">
+                <div class="col-xl-2 "></div>
+                <h5 class="mt-3">CƠ SỞ TOÀN QUỐC</h5>
+                <ul class="nav flex-column p-0" ng-repeat="cs in coso">
+                    <li class="nav-item mb-2 "><a href="# " class="nav-link p-0 text-muted "><i class="fas fa-map-marker-alt text-danger"></i> {{cs.coso}}</a></li>
+                </ul>
+                <div class="col-xl-2"></div>
+            </div>
+
+            <div class="col-xl-3 row p-0  ms-2">
+                <div class="col-xl-2"></div>
+                <h5 class="mt-3">NGÀNH ĐÀO TẠO</h5>
+                <ul class="nav flex-column" ng-repeat="n in nganh">
+                    <li class="nav-item mb-2"><a href="# " class="nav-link p-0 text-muted "><i class="fas fa-check text-success"></i> {{n.nganh}}</a></li>
+                </ul>
+                <div class="col-xl-2"></div>
+            </div>
+            <div class="col-xl-2"></div>
+        </footer>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="controllers/dangnhap_ctrol.js"></script>
+    <script src="controllers/dangky_ctrol.js"></script>
+    <script src="controllers/footer_ctrol.js"></script>
+    <script src="controllers/trangchu_ctrol.js"></script>
+    <script src="controllers/baithi_ctrol.js"></script>
+    <script src="controllers/thi_ctrol.js"></script>
+    <script src="controllers/ql_user_ctrol.js"></script>
+    <script src="controllers/user_ctrol.js"></script>
+    <script src="controllers/ketquathi.js"></script>
+    <script src="controllers/diem.js"></script>
+    <script src="controllers/lichsu_baithi.js"></script>
+    <script src="controllers/cauhoi.js"></script>
+    <script src="controllers/hoidap.js"></script>
+    <script>
+        const app = angular.module('myApp', ['ngRoute']);
+        app.config(function($routeProvider, $locationProvider) {
+            $locationProvider.hashPrefix('');
+            $routeProvider
+                .when("/", {
+                    templateUrl: 'pages/trangchu.html',
+                    controller: 'ctrol_trangchu'
+                })
+                .when("/gioithieu", {
+                    templateUrl: 'pages/gioithieu.html'
+                })
+                .when("/lienhe", {
+                    templateUrl: 'pages/lienhe.html'
+                })
+                .when("/gopy", {
+                    templateUrl: 'pages/gopy.html'
+                })
+                .when("/hoidap", {
+                    templateUrl: 'pages/hoidap.html',
+                    controller: 'ctrol_hoidap'
+                })
+                .when("/dangnhap", {
+                    templateUrl: 'pages/dangnhap.html',
+                    controller: 'ctrol_dangnhap'
+                })
+                .when("/dangky", {
+                    templateUrl: 'pages/dangky.html',
+                    controller: 'ctrol_dangky'
+                })
+                .when("/quenmatkhau", {
+                    templateUrl: 'pages/quenmatkhau.html'
+                })
+                .when("/baithi", {
+                    templateUrl: 'pages/baithi_list.html',
+                    controller: 'ctrol_baithi'
+                })
+                .when("/hoso", {
+                    templateUrl: 'pages/hoso.html'
+                })
+                .when("/thi/:maMon", {
+                    templateUrl: 'pages/thi.html?',
+                    controller: 'ctrol_thi'
+                })
+                .when("/ql_user", {
+                    templateUrl: 'pages/ql_user.html',
+                    controller: 'ctrol_ql_user'
+                })
+                .when("/user/:id", {
+                    templateUrl: 'pages/user.html?',
+                    controller: 'ctrol_user'
+                })
+                .when("/ketquathi/:maMon", {
+                    templateUrl: 'pages/ketquathi.html?',
+                    controller: 'ctrol_ketquathi'
+                })
+                .when("/diem", {
+                    templateUrl: 'pages/diem.html',
+                    controller: 'ctrol_diem'
+                })
+                .when("/lichsu_baithi/:maMon", {
+                    templateUrl: 'pages/lichsu_baithi.html?',
+                    controller: 'ctrol_lichsu_baithi'
+                })
+                .when("/cauhoi/:maMon", {
+                    templateUrl: 'pages/cauhoi.html?',
+                    controller: 'ctrol_cauhoi'
+                })
+
+        })
+
+        app.directive("checkChar", function() {
+            return {
+                require: "ngModel",
+                link: function(scope, element, attr, mCtrl) {
+                    mCtrl.$parsers.push(function(value) {
+                        if (value.length > 6 || value < 1) {
+                            mCtrl.$setValidity('checkChar', true);
+                        } else {
+                            mCtrl.$setValidity('checkChar', false);
+                        }
+                        return value;
+                    });
+                }
+            }
+        });
+        app.controller("ctrol_dangnhap", dangnhap);
+        app.controller("ctrol_dangky", dangky);
+        app.controller("ctrol_footer", footer);
+        app.controller("ctrol_trangchu", trangchu);
+        app.controller("ctrol_baithi", baithi);
+        app.controller("ctrol_thi", thi);
+        app.controller("ctrol_ql_user", ql_user);
+        app.controller("ctrol_user", user);
+        app.controller("ctrol_ketquathi", ketquathi);
+        app.controller("ctrol_diem", diem);
+        app.controller("ctrol_lichsu_baithi", lichsu_baithi);
+        app.controller("ctrol_cauhoi", cauhoi);
+        app.controller("ctrol_hoidap", hoidap);
+    </script>
+</body>
+
+</html>

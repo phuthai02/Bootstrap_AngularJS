@@ -1,0 +1,202 @@
+<div class="row">
+    <div class="col-xxl-2"></div>
+    <div class="col-xxl-8">
+        <div class="row">
+            <div class="col-xxl-8 p-xxl-2">
+                <div id="carouselExampleIndicators" class="carousel slide p-2 p-xxl-0" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                        <button type="button" ng-repeat="s in slides" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{s.id}}" aria-label="Slide {{s.id}}"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="2000">
+                            <img src="images/2.jpg" class="d-block w-100 h-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000" ng-repeat="s in slides">
+                            <img src="images/{{s.nameImg}}" class="d-block w-100 h-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                </div>
+            </div>
+            <div class="col-xxl-4 p-xxl-2 pb-xxl-3">
+                <div class="w-100 h-50 align-items-center p-2 p-xxl-0">
+                    <img src="images/cntt.jpg" class="w-100 h-100">
+                </div>
+                <div class="w-100 h-50 align-items-center mt-xxl-2 p-2 p-xxl-0">
+                    <img src="images/2.gif" class="w-100 h-100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-2"></div>
+</div>
+<div class="row m-0 align-items-center">
+    <div class="col-xxl-2"></div>
+    <div class="col-xxl-8 bg-dark m-auto row mt-xxl-0 mt-2">
+        <button class="btn btn-outline-light col-xxl-3 border-0 fs-5 pt-xxl-2 pb-xxl-2" ng-repeat="m in mons" data-bs-toggle="modal" data-bs-target="#modal{{m.maMon}}"><i class="{{m.icon}}"></i> {{m.tenMon}}</button>
+    </div>
+    <div class="col-xxl-2"></div>
+</div>
+
+<div class="modal fade" ng-repeat="m in mons" id="modal{{m.maMon}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">{{m.tenMon}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row p-2">
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 1:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Kỹ năng học tập</li>
+                                    <li>Nhập môn lập trình</li>
+                                    <li>Tin học</li>
+                                    <li>Thiết kế hình ảnh với Photoshop</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 2:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Xây dựng trang web</li>
+                                    <li>Lập trình Java 1</li>
+                                    <li>Cơ sở dữ liệu</li>
+                                    <li>Lập trình JavaScript</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 3:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Hệ quản trị SQL Server</li>
+                                    <li>Lập trình Java 2</li>
+                                    <li>Lập trình Java 3</li>
+                                    <li>Quản lý dự án với Agile</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 4:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Dự án mẫu (Swing/JDBC)</li>
+                                    <li>Nhập môn kỹ thuật phần mềm</li>
+                                    <li>Dự án 1 (Swing/JDBC)</li>
+                                    <li>Giáo dục thể chất</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 5:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Kiểm thử cơ bản</li>
+                                    <li>Font-End Framework</li>
+                                    <li>Kiểm thử nâng cao</li>
+                                    <li>Lập trình Java 4</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 6:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Lập trình Java 5</li>
+                                    <li>Kỹ năng làm việc</li>
+                                    <li>Lập trình Java 6</li>
+                                    <li>Giáo dục quốc phòng</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Học kỳ 7:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Dự án tốt nghiệp (Spring Boot)</li>
+                                    <li>Thực tập</li>
+                                    <li>Chính trị</li>
+                                    <li>Pháp luật</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card p-0 m-2">
+                            <div class="card-header">Tiếng Anh:</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Tiếng anh 1.1</li>
+                                    <li>Tiếng anh 1.2</li>
+                                    <li>Tiếng anh 2.1</li>
+                                    <li>Tiếng anh 2.2</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><small>Thời gian học: 4 tháng</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Đăng ký khoá học</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-0">
+    <div class="col-md-2"></div>
+    <div class="col-xxl m-xxl-3 mt-2 m-auto" ng-repeat="d in devs">
+        <div class="cardProfile bg-dark bg-opacity-75">
+            <div class="card_img"><img src="images/{{d.img}}"></div>
+            <h2 class="text-white text-center fw-bold">{{d.name}}</h2>
+            <p class="text-white fs-5 text-center fw-bold">{{d.job}}</p>
+            <div class="card_link fs-3 text-center">
+                <a class="me-4" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="me-4" href="#"><i class="fab fa-youtube"></i></a>
+                <a class="me-4" href="#"><i class="fab fa-tiktok"></i></a>
+                <a class="me-4" href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="card_action text-center"><button class=" text-white fs-5 fw-bold pt-1 pb-1 ps-4 pe-4 mt-4">Xem thêm</button></div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

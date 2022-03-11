@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div>
+            <button class="btn btn-primary rounded-pill" ng-click="onInsertPost()">Thêm bài viết</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm bài viết</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <textarea class="form-control" ng-model="post.title" placeholder="Nội dung bài viết" id="floatingTextarea2" style="height: 200px"></textarea>
+                            <label for="floatingTextarea2">Nội dung bài viết</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-click="onInsert()">Thêm bài viết</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="p in list_post">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title fs-5">{{p.title}}
+                        <span class="badge bg-success" ng-show=" {{p.comment.length>0}}">Đã trả lời</span>
+                        <span class="badge bg-danger" ng-show="{{p.comment.length==0}}">Chưa trả lời</span>
+                    </h5>
+                    <p class="card-text">Câu hỏi từ: {{p.username}} tới FPT Polytechnic</p>
+                    <p class="card-text">Thời gian đăng: {{p.time | date:"hh:mm a - dd/MM/yyyy"}}</p>
+                </div>
+                <div class="card-footer fs-6 position-relative">
+                    <i class="fas fa-heart text-danger ps-md-2"></i> {{p.like}}
+                    <i class="fas fa-comment-dots ps-md-2"></i> {{p.comment.length}}
+                    <i class="fas fa-share-square ps-md-2"></i> {{p.share}}
+                    <button class="btn p-0 position-absolute end-0 me-3" data-bs-toggle="collapse" data-bs-target="#c{{p.id}}">Xem thêm <i class="fas fa-chevron-down"></i></button>
+                </div>
+            </div>
+            <div class="collapse" id="c{{p.id}}">
+                <div class="card">
+                    <div class="card ps-3 m-1" ng-repeat="cm in p.comment">
+                        <div class="card-body">
+                            <b class="row fs-5">{{cm.cm_user}}</b>
+                            <span class="row">{{cm.cm_content}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer p-2">
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroup-sizing-default">
+                            <span ng-show="{{isLogin!=''}}">{{isLogin}}</span>
+                        <span ng-show="{{isLogin==''}}">Ẩn danh</span>
+                        </span>
+                        <input type="text" ng-model="p_comment.cm_content" class="form-control" placeholder="Viết bình luận..." ng-disabled="{{isLogin==''}}">
+                        <button ng-disabled="{{isLogin==''}}" class="btn btn-light" type="button" ng-click="onSend(p.id)"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

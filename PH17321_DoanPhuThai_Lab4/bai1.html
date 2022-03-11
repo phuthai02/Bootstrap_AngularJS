@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+
+<body ng-app="app">
+
+    <div class="container">
+        <div ng-controller="conInfo">
+            <img src={{photo}} alt="">
+            <ul>
+                <li>Họ và tên: {{fullname}}</li>
+                <li>Ngày sinh: {{birthday}}</li>
+                <li>Giới tính: {{gender}}</li>
+                <li>Điểm trung bình: {{mark}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/angularjs.min.js"></script>
+    <script>
+        const app = angular.module("app", []);
+
+        function info($scope) {
+            $scope.fullname = "Nguyễn Văn Tèo";
+            $scope.birthday = "20-01-1995";
+            $scope.gender = "Nam";
+            $scope.photo = "images/ga3.jpg";
+            $scope.mark = 8.5;
+        }
+        app.controller("conInfo", info);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hàng hoá</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+<div class="container" ng-app="myApp">
+    <div class="card" ng-controller="myCtrol">
+        <div class="card-header">DANH SÁCH HÀNG HOÁ</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="fw-bold d-flex">
+                        <td class="col-md-5" ng-click="sortBy('name')">SẢN PHẨM</td>
+                        <td class="col-md-2" ng-click="sortBy('price')">ĐƠN GIÁ</td>
+                        <td class="col-md-2" ng-click="sortBy('discount')">GIÁ GIẢM</td>
+                        <td class="col-md-3" ng-click="sortBy('date')">NGÀY</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex" ng-repeat="p in list_product|orderBy: prop |limitTo:8:begin">
+                        <td class="col-md-5">{{p.name| uppercase}}</td>
+                        <td class="col-md-2">{{p.price| currency}}</td>
+                        <td class="col-md-2">{{p.discount| percentage:2}}</td>
+                        <td class="col-md-3">{{p.date| date:"dd-MM-yyyy"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            <button ng-click="getFirst()" class="btn-default btn"><img src="images/Button-First-icon.png" alt=""></button>
+            <button ng-click="getPrevious()" class="btn-default btn"><img src="images/Button-Previous-icon.png" alt=""></button>
+            <button ng-click="getNext()" class="btn-default btn"><img src="images/Button-Next-icon.png" alt=""></button>
+            <button ng-click="getLast()" class="btn-default btn"><img src="images/Button-Last-icon.png" alt=""></button>
+        </div>
+    </div>
+</div>
+
+<body>
+    <!--script-->
+    <script src="js/angularjs.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Prods.js"></script>
+    <script>
+        const app = angular.module("myApp", []);
+        app.controller("myCtrol", function($scope) {
+            $scope.list_product = list;
+            $scope.sortBy = function(prop) {
+                $scope.prop = prop;
+            }
+            $scope.begin = 0;
+            $scope.pageCount = Math.ceil($scope.list_product.length / 8);
+            $scope.getFirst = function() {
+                $scope.begin = 0;
+            }
+            $scope.getLast = function() {
+                $scope.begin = ($scope.pageCount - 1) * 8;
+            }
+            $scope.getPrevious = function() {
+                if ($scope.begin > 0) {
+                    $scope.begin -= 8;
+                }
+            }
+            $scope.getNext = function() {
+                if ($scope.begin < ($scope.pageCount - 1) * 8) {
+                    $scope.begin += 8;
+                }
+            }
+        })
+        app.filter('percentage', function($filter) {
+            return function(input, decimals) {
+                return $filter('number')(input * 100, decimals) + "%";
+            }
+        })
+    </script>
+</body>
+
+</html>
